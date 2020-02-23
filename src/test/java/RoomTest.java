@@ -134,4 +134,9 @@ public class RoomTest {
         assertEquals(3, room.getParty().size());
     }
 
+    @Test
+    public void starts_as_not_solved(){
+        assertEquals(false, room.getIsSolved());
+    }
+
 }

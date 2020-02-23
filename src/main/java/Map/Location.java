@@ -11,18 +11,18 @@ public abstract class Location implements IHaveTreasure {
     private String name;
     private String description;
     private int sizeInTiles;
-    private ArrayList<Treasure> treasureList;
-    private ArrayList<Player> enemies;
+    private ArrayList<Treasure> treasureList;;
     private ArrayList<Player> party;
+    private boolean isSolved;
 
-    public Location(String type, String name, String description, int sizeInTiles,ArrayList<Treasure> treasures, ArrayList<Player> enemies ) {
+    public Location(String type, String name, String description, int sizeInTiles,ArrayList<Treasure> treasures) {
         this.type = type;
         this.name = name;
         this.description = description;
         this.sizeInTiles = sizeInTiles;
         this.treasureList = treasures;
-        this.enemies = enemies;
         this.party = new ArrayList<Player>();
+        this.isSolved = false;
 
     }
 
@@ -67,9 +67,6 @@ public abstract class Location implements IHaveTreasure {
         return droppedTreasure;
     }
 
-    public ArrayList<Player> getEnemies() {
-        return enemies;
-    }
 
     public ArrayList<Player> getParty(){
         return this.party;
@@ -87,4 +84,7 @@ public abstract class Location implements IHaveTreasure {
         }
     }
 
+    public boolean getIsSolved() {
+        return isSolved;
+    }
 }
