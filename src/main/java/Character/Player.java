@@ -1,7 +1,7 @@
 package Character;
 
 import Treasure.IHaveTreasure;
-import Treasure.ITreasurable;
+import Treasure.Treasure;
 
 import java.util.ArrayList;
 
@@ -10,14 +10,14 @@ public abstract class Player implements IHaveHealth, IHaveTreasure {
     protected double attackMultiplier;
     protected double defenceMultiplier;
     protected double health;
-    protected ArrayList<ITreasurable> treasureList;
+    protected ArrayList<Treasure> treasureList;
 
     public Player(String name) {
         this.name = name;
         this.attackMultiplier = 6;
         this.defenceMultiplier = 8;
         this.health = 100;
-        this.treasureList = new ArrayList<ITreasurable>();
+        this.treasureList = new ArrayList<Treasure>();
     }
     public String getName() {
         return name;
@@ -45,25 +45,25 @@ public abstract class Player implements IHaveHealth, IHaveTreasure {
         this.health += amount;
     }
 
-    public ArrayList<ITreasurable> getTreasureList() {
+    public ArrayList<Treasure> getTreasureList() {
         return this.treasureList;
     }
 
     public double getTreasureValue() {
         double total = 0;
-        for (ITreasurable treasureItem: this.treasureList){
+        for (Treasure treasureItem: this.treasureList){
             total += treasureItem.getValue();
         }
         return total;
     }
 
-    public void addTreasure(ITreasurable treasureItem) {
+    public void addTreasure(Treasure treasureItem) {
         this.treasureList.add(treasureItem);
     }
 
-    public ArrayList<ITreasurable> dropTreasure() {
-        ArrayList<ITreasurable> droppedTreasure = new ArrayList<ITreasurable>();
-        for (ITreasurable treasureItem : this.treasureList) {
+    public ArrayList<Treasure> dropTreasure() {
+        ArrayList<Treasure> droppedTreasure = new ArrayList<Treasure>();
+        for (Treasure treasureItem : this.treasureList) {
             droppedTreasure.add(treasureItem);
         }
         this.treasureList.clear();

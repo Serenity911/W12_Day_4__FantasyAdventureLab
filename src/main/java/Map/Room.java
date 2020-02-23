@@ -1,12 +1,12 @@
 package Map;
 
-import Treasure.ITreasurable;
+import Treasure.Treasure;
 
 import java.util.ArrayList;
 
 public class Room extends Location {
 
-    public Room( String name, String description, int sizeInTiles, ArrayList<ITreasurable> treasures) {
+    public Room( String name, String description, int sizeInTiles, ArrayList<Treasure> treasures) {
         super("room", name, description, sizeInTiles, treasures);
     }
 

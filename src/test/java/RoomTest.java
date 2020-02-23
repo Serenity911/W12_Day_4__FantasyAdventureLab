@@ -1,6 +1,6 @@
 import Map.Room;
 import Treasure.Gem;
-import Treasure.ITreasurable;
+import Treasure.Treasure;
 import com.sun.tools.jdi.EventSetImpl;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,11 +11,11 @@ import static org.junit.Assert.assertEquals;
 
 public class RoomTest {
     public Room room;
-    public ArrayList<ITreasurable> treasureList;
-    public ITreasurable gem;
-    public ITreasurable gem1;
-    public ITreasurable gem2;
-    public ITreasurable gem3;
+    public ArrayList<Treasure> treasureList;
+    public Treasure gem;
+    public Treasure gem1;
+    public Treasure gem2;
+    public Treasure gem3;
 
 
     @Before
@@ -25,7 +25,7 @@ public class RoomTest {
         gem2 = new Gem("Sapphire", 20);
         gem3 = new Gem("Small ruby", 7);
 
-        treasureList = new ArrayList<ITreasurable>();
+        treasureList = new ArrayList<Treasure>();
         treasureList.add(gem);
         treasureList.add(gem1);
         treasureList.add(gem2);

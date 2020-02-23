@@ -1,7 +1,7 @@
 package Character;
 
 import Healing.HealingTool;
-import Treasure.ITreasurable;
+import Treasure.Treasure;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ public class Cleric extends Player implements IHeal {
         this.healingTools = new ArrayList<HealingTool>();
         this.defenceMultiplier = 1;
         this.health = 100;
-        this.treasureList = new ArrayList<ITreasurable>();
+        this.treasureList = new ArrayList<Treasure>();
     }
 
 
@@ -38,25 +38,25 @@ public class Cleric extends Player implements IHeal {
     }
 
 
-    public ArrayList<ITreasurable> getTreasureList() {
+    public ArrayList<Treasure> getTreasureList() {
         return this.treasureList;
     }
 
     public double getTreasureValue() {
         double total = 0;
-        for (ITreasurable treasureItem: this.treasureList){
+        for (Treasure treasureItem: this.treasureList){
             total += treasureItem.getValue();
         }
         return total;
     }
 
-    public void addTreasure(ITreasurable treasureItem) {
+    public void addTreasure(Treasure treasureItem) {
         this.treasureList.add(treasureItem);
     }
 
-    public ArrayList<ITreasurable> dropTreasure() {
-        ArrayList<ITreasurable> droppedTreasure = null;
-        for (ITreasurable treasureItem : this.treasureList) {
+    public ArrayList<Treasure> dropTreasure() {
+        ArrayList<Treasure> droppedTreasure = null;
+        for (Treasure treasureItem : this.treasureList) {
             droppedTreasure.add(treasureItem);
             this.treasureList.remove(treasureItem);
         }
