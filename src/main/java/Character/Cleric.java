@@ -5,8 +5,7 @@ import Treasure.ITreasurable;
 
 import java.util.ArrayList;
 
-public class Cleric extends Player implements IHeal, IHaveHealth, IHaveTreasure {
-    private String name;
+public class Cleric extends Player implements IHeal {
     private ArrayList<HealingTool> healingTools;
 
     public Cleric (String name) {
@@ -17,9 +16,6 @@ public class Cleric extends Player implements IHeal, IHaveHealth, IHaveTreasure 
         this.treasureList = new ArrayList<ITreasurable>();
     }
 
-//    public String getName() {
-//        return name;
-//    }
 
     public ArrayList<HealingTool> getHealingTools() {
         return healingTools;
