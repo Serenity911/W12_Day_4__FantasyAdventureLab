@@ -1,11 +1,10 @@
 package Character;
 
-import Arm.Arm;
 import Treasure.ITreasurable;
 
 import java.util.ArrayList;
 
-public abstract class FightingCharacter {
+public abstract class FightingCharacter implements IHaveHealth, IHaveTreasure {
 
     private String name;
     private double attackMultiplier;
@@ -63,5 +62,14 @@ public abstract class FightingCharacter {
 
     public void addTreasure(ITreasurable treasureItem) {
         this.treasureList.add(treasureItem);
+    }
+
+    public ArrayList<ITreasurable> dropTreasure() {
+        ArrayList<ITreasurable> droppedTreasure = new ArrayList<ITreasurable>();
+        for (ITreasurable treasureItem : this.treasureList) {
+            droppedTreasure.add(treasureItem);
+        }
+        this.treasureList.clear();
+        return droppedTreasure;
     }
 }

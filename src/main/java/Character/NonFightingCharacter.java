@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 
-public abstract class NonFightingCharacter {
+public abstract class NonFightingCharacter implements IHeal, IHaveHealth, IHaveTreasure {
     private String name;
     private ArrayList<HealingTool> healingTools;
     private double defenceMultiplier;
@@ -63,9 +63,18 @@ public abstract class NonFightingCharacter {
         this.treasureList.add(treasureItem);
     }
 
-    public void heal(Dwarf dwarf, HealingTool healingTool) {
+    public ArrayList<ITreasurable> dropTreasure() {
+        ArrayList<ITreasurable> droppedTreasure = null;
+        for (ITreasurable treasureItem : this.treasureList) {
+            droppedTreasure.add(treasureItem);
+            this.treasureList.remove(treasureItem);
+        }
+        return droppedTreasure;
+    }
+
+    public void heal(IHaveHealth target, HealingTool healingTool) {
         if (this.healingTools.contains(healingTool)){
-            dwarf.increaseHealth(healingTool.getHealingAmount());
+            target.increaseHealth(healingTool.getHealingAmount());
             this.healingTools.remove(healingTool);
         }
     }

@@ -20,5 +20,13 @@ public class Spellcaster extends FightingCharacter {
         this.spells.add( spell);
     }
 
+    public Spell getSpellByName(String name){
+        for (Spell spell : this.spells){
+            if (spell.getName() == name){
+                return spell;
+            }
+        }
+        return null;
+    }
 
 }

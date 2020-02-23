@@ -19,4 +19,5 @@ public class Warrior extends FightingCharacter {
     public void addWeapon(Weapon weapon) {
         this.weapons.add(weapon);
     }
+
 }

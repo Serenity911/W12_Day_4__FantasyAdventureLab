@@ -70,7 +70,13 @@ public class DwarfTest {
         assertEquals(1, dwarf.getTreasureList().size());
     }
 
-
+    @Test
+    public void can_drop_treasure(){
+        dwarf.addTreasure(gem);
+        dwarf.dropTreasure();
+        assertEquals(0, dwarf.getTreasureValue(), 0.01);
+        assertEquals(0, dwarf.getTreasureList().size());
+    }
 
 
 
