@@ -4,7 +4,7 @@ import Arm.Weapon;
 
 import java.util.ArrayList;
 
-public class Warrior extends FightingCharacter {
+public class Warrior extends Player implements IHaveHealth, IHaveTreasure {
     private ArrayList<Weapon> weapons;
 
     public Warrior(String name) {

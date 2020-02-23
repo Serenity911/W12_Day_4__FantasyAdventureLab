@@ -4,24 +4,20 @@ import Treasure.ITreasurable;
 
 import java.util.ArrayList;
 
-public abstract class FightingCharacter implements IHaveHealth, IHaveTreasure {
-
+public abstract class Player implements IHaveHealth, IHaveTreasure {
     private String name;
-    private double attackMultiplier;
-    private double defenceMultiplier;
-    private double health;
-    private ArrayList<ITreasurable> treasureList;
+    protected double attackMultiplier;
+    protected double defenceMultiplier;
+    protected double health;
+    protected ArrayList<ITreasurable> treasureList;
 
-
-    public FightingCharacter(String name) {
+    public Player(String name) {
         this.name = name;
         this.attackMultiplier = 6;
         this.defenceMultiplier = 8;
         this.health = 100;
         this.treasureList = new ArrayList<ITreasurable>();
-
     }
-
     public String getName() {
         return name;
     }
