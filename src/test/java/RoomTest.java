@@ -1,6 +1,8 @@
 import Map.Room;
 import Character.Player;
 import Character.Dwarf;
+import Character.Cleric;
+import Character.Wizard;
 import Treasure.Gem;
 import Treasure.Treasure;
 import com.sun.tools.jdi.EventSetImpl;
@@ -20,10 +22,24 @@ public class RoomTest {
     public Treasure gem3;
     public Player enemy;
     public ArrayList<Player> enemies;
+    public ArrayList<Player> party;
+    public Wizard wizard;
+    public Dwarf dwarf;
+    public Cleric cleric;
+
 
 
     @Before
     public void before(){
+        wizard = new Wizard("Jimmy");
+        dwarf = new Dwarf("Jeff");
+        cleric = new Cleric("Bob");
+        party = new ArrayList<Player>();
+        party.add(cleric);
+        party.add(wizard);
+        party.add(dwarf);
+
+
         gem = new Gem("Ruby", 10);
         gem1 = new Gem("Diamond", 50);
         gem2 = new Gem("Sapphire", 20);
@@ -82,6 +98,40 @@ public class RoomTest {
     @Test
     public void can_get_enemies(){
         assertEquals(1, room.getEnemies().size());
+    }
+
+    @Test
+    public void starts_with_no_party(){
+        assertEquals(0, room.getParty().size());
+    }
+
+    @Test
+    public void can_add_a_party(){
+        room.addParty(party);
+        assertEquals(true, room.getParty().contains(wizard));
+        assertEquals(true, room.getParty().contains(dwarf));
+        assertEquals(true, room.getParty().contains(cleric));
+        assertEquals(3, room.getParty().size());
+    }
+
+    @Test
+    public void can_remove_party(){
+        room.addParty(party);
+        room.removeParty();
+        assertEquals(false, room.getParty().contains(wizard));
+        assertEquals(false, room.getParty().contains(dwarf));
+        assertEquals(false, room.getParty().contains(cleric));
+        assertEquals(0, room.getParty().size());
+    }
+
+    @Test
+    public void cannot_add_multiple_parties(){
+        room.addParty(party);
+        room.addParty(party);
+        assertEquals(true, room.getParty().contains(wizard));
+        assertEquals(true, room.getParty().contains(dwarf));
+        assertEquals(true, room.getParty().contains(cleric));
+        assertEquals(3, room.getParty().size());
     }
 
 }

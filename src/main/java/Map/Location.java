@@ -13,6 +13,7 @@ public abstract class Location implements IHaveTreasure {
     private int sizeInTiles;
     private ArrayList<Treasure> treasureList;
     private ArrayList<Player> enemies;
+    private ArrayList<Player> party;
 
     public Location(String type, String name, String description, int sizeInTiles,ArrayList<Treasure> treasures, ArrayList<Player> enemies ) {
         this.type = type;
@@ -21,6 +22,7 @@ public abstract class Location implements IHaveTreasure {
         this.sizeInTiles = sizeInTiles;
         this.treasureList = treasures;
         this.enemies = enemies;
+        this.party = new ArrayList<Player>();
 
     }
 
@@ -69,5 +71,20 @@ public abstract class Location implements IHaveTreasure {
         return enemies;
     }
 
+    public ArrayList<Player> getParty(){
+        return this.party;
+    }
+
+    public void addParty(ArrayList<Player> party) {
+        if (this.party.size() == 0){
+            this.party = party;
+        }
+    }
+
+    public void removeParty(){
+        if (this.party.size() > 0) {
+            this.party.clear();
+        }
+    }
 
 }
