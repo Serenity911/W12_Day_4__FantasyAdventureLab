@@ -1,48 +1,40 @@
-package Character;
+package Map;
 
 import Treasure.IHaveTreasure;
 import Treasure.ITreasurable;
 
 import java.util.ArrayList;
 
-public abstract class Player implements IHaveHealth, IHaveTreasure {
+public abstract class Location implements IHaveTreasure {
+    private String type;
     private String name;
-    protected double attackMultiplier;
-    protected double defenceMultiplier;
-    protected double health;
-    protected ArrayList<ITreasurable> treasureList;
+    private String description;
+    private int sizeInTiles;
+    private ArrayList<ITreasurable> treasureList;
 
-    public Player(String name) {
+    public Location(String type, String name, String description, int sizeInTiles,ArrayList<ITreasurable> treasures ) {
+        this.type = type;
         this.name = name;
-        this.attackMultiplier = 6;
-        this.defenceMultiplier = 8;
-        this.health = 100;
-        this.treasureList = new ArrayList<ITreasurable>();
+        this.description = description;
+        this.sizeInTiles = sizeInTiles;
+        this.treasureList = treasures;
+
     }
+
+    public String getType() {
+        return type;
+    }
+
     public String getName() {
         return name;
     }
 
-    public double getAttackMultiplier() {
-        return attackMultiplier;
+    public String getDescription() {
+        return description;
     }
 
-    public double getDefenceMultiplier() {
-        return defenceMultiplier;
-    }
-
-    public double getHealth() {
-        return health;
-    }
-
-
-
-    public void reduceHealth(double amount) {
-        this.health -= amount;
-    }
-
-    public void increaseHealth(double amount) {
-        this.health += amount;
+    public int getSizeInTiles() {
+        return sizeInTiles;
     }
 
     public ArrayList<ITreasurable> getTreasureList() {
@@ -69,4 +61,5 @@ public abstract class Player implements IHaveHealth, IHaveTreasure {
         this.treasureList.clear();
         return droppedTreasure;
     }
+
 }

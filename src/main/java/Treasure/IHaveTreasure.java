@@ -1,4 +1,4 @@
-package Character;
+package Treasure;
 
 import Treasure.ITreasurable;
 
