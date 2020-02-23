@@ -2,6 +2,7 @@ package Map;
 
 import Treasure.IHaveTreasure;
 import Treasure.Treasure;
+import Character.Player;
 
 import java.util.ArrayList;
 
@@ -11,13 +12,15 @@ public abstract class Location implements IHaveTreasure {
     private String description;
     private int sizeInTiles;
     private ArrayList<Treasure> treasureList;
+    private ArrayList<Player> enemies;
 
-    public Location(String type, String name, String description, int sizeInTiles,ArrayList<Treasure> treasures ) {
+    public Location(String type, String name, String description, int sizeInTiles,ArrayList<Treasure> treasures, ArrayList<Player> enemies ) {
         this.type = type;
         this.name = name;
         this.description = description;
         this.sizeInTiles = sizeInTiles;
         this.treasureList = treasures;
+        this.enemies = enemies;
 
     }
 
@@ -61,5 +64,10 @@ public abstract class Location implements IHaveTreasure {
         this.treasureList.clear();
         return droppedTreasure;
     }
+
+    public ArrayList<Player> getEnemies() {
+        return enemies;
+    }
+
 
 }

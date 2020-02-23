@@ -1,4 +1,6 @@
 import Map.Room;
+import Character.Player;
+import Character.Dwarf;
 import Treasure.Gem;
 import Treasure.Treasure;
 import com.sun.tools.jdi.EventSetImpl;
@@ -16,6 +18,8 @@ public class RoomTest {
     public Treasure gem1;
     public Treasure gem2;
     public Treasure gem3;
+    public Player enemy;
+    public ArrayList<Player> enemies;
 
 
     @Before
@@ -30,7 +34,11 @@ public class RoomTest {
         treasureList.add(gem1);
         treasureList.add(gem2);
 
-        room = new Room("Dungeon Entrance", "Empty disadorned room.", 10, treasureList);
+        enemy = new Dwarf("Brutus the Angry Dwarf");
+        enemies = new ArrayList<Player>();
+        enemies.add(enemy);
+
+        room = new Room("Dungeon Entrance", "Empty disadorned room.", 10, treasureList, enemies);
     }
 
     @Test
@@ -69,7 +77,11 @@ public class RoomTest {
     public void can_drop_treasure(){
         assertEquals(3, room.dropTreasure().size());
         assertEquals(0, room.getTreasureList().size());
+    }
 
+    @Test
+    public void can_get_enemies(){
+        assertEquals(1, room.getEnemies().size());
     }
 
 }
