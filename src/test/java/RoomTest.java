@@ -21,6 +21,7 @@ public class RoomTest {
     public Treasure gem2;
     public Treasure gem3;
     public Player enemy;
+    public Player enemy1;
     public ArrayList<Player> enemies;
     public ArrayList<Player> party;
     public Wizard wizard;
@@ -51,6 +52,7 @@ public class RoomTest {
         treasureList.add(gem2);
 
         enemy = new Dwarf("Brutus the Angry Dwarf");
+        enemy1 = new Dwarf("Caius, son of Brutus the Angry Dwarf");
         enemies = new ArrayList<Player>();
         enemies.add(enemy);
 
@@ -137,6 +139,24 @@ public class RoomTest {
     @Test
     public void starts_as_not_solved(){
         assertEquals(false, room.getIsSolved());
+    }
+
+    @Test
+    public void defeated_enemy_are_removed(){
+        room.defeatEnemy(enemy);
+        assertEquals(1, room.getDefeatedEnemies().size());
+        assertEquals(0, room.getEnemies().size());
+        assertEquals(true, room.getIsSolved());
+    }
+
+    @Test
+    public void get_enemy_with_lowest_health(){
+        this.enemies.add(enemy1);
+        enemy1.reduceHealth(90);
+
+        assertEquals(10, enemy1.getHealth(), 0.01);
+        assertEquals(enemy1, room.getEnemyLowestHealth());
+
     }
 
 }

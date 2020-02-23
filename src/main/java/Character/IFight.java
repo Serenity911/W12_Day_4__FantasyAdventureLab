@@ -1,5 +1,8 @@
 package Character;
 
-public interface IFight {
+import Arm.Arm;
 
+public interface IFight {
+    double attack();
+     Arm getMostPowerfulArm();
 }

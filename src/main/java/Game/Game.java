@@ -1,6 +1,7 @@
 package Game;
 import Character.Player;
 import Character.Dwarf;
+import Character.IFight;
 import Map.FinalRoom;
 import Map.Location;
 import Map.Room;
@@ -13,10 +14,12 @@ public class Game {
 //    rules should be interface
     private Rules rules;
     private ArrayList<Player> party;
+    private ArrayList<IFight> fightingCharacters;
     private ArrayList<Location> rooms;
     private Location room1;
     private Location winnersRoom;
     private ArrayList<Treasure> winnersTreasure;
+    protected Location currentLocation;
 
 //    all these things can they be added in a separate file and used to initialise the Game?
     private ArrayList<Treasure> treasureList;
@@ -27,7 +30,9 @@ public class Game {
     public Game(Rules rules) {
         this.rules = rules;
         this.party = new ArrayList<Player>();
+        this.fightingCharacters = new ArrayList<IFight>();
         this.rooms = new ArrayList<Location>();
+        this.currentLocation = null;
 
 
     }
@@ -39,7 +44,8 @@ public class Game {
         this.enemy = new Dwarf("Brutus the Angry Dwarf");
         this.enemies = new ArrayList<Player>();
         this.enemies.add(enemy);
-        this.room1 = new Room("Dungeon Entrance", "Empty disadorned room.", 10, treasureList, enemies);
+
+        this.room1 = new Room("Dungeon Entrance", "Empty and gloomy room.", 10, treasureList, enemies);
         this.rooms.add(room1);
 
         this.winnersTreasure = new ArrayList<Treasure>();
@@ -84,11 +90,32 @@ public class Game {
 
     public void enterRoom(Location location){
             location.addParty(party);
+            this.currentLocation = location;
     }
 
     public void leaveRoom(Location location) {
         location.removeParty();
     }
+
+    public Location getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public boolean areThereEnemy(){
+        return this.currentLocation.getEnemies().size() > 0;
+    }
+//
+//    public void fightEnemies(){
+//        if(areThereEnemy()){
+//            for (IFight player : this.fightingCharacters){
+//                while(!this.currentLocation.getIsSolved()){
+//                    double playerDamage = player.attack();
+//                    double this.currentLocation.getEnemies()
+//                }
+//            }
+//
+//        }
+//    }
 
 
 }

@@ -13,7 +13,9 @@ public class Runner {
     public static void main(String[] args) {
         Rules rules = new Rules();
         Game game = new Game(rules);
+//        initialise Game
         game.initialiseGame();
+//        add players
         Scanner scanner = new Scanner(System.in);
         System.out.println("How many players?");
         int numberPlayer = scanner.nextInt();
@@ -23,20 +25,22 @@ public class Runner {
             System.out.println("Player's "+ (i+1) + " reply to the following questions with y for yes or n for no");
             boolean charTypeSelected = false;
             while ( charTypeSelected == false) {
-                System.out.println("charType Selected : " +charTypeSelected);
                 System.out.println("Player "+ name + " would you like to play a Wizard?");
                 String answer = scanner.next().toLowerCase();
-                System.out.println(answer);
                 if (answer.equals("y")) {
-                    System.out.println("is it entering the if");
                     Wizard player1 = new Wizard(""+name+"");
                      game.addPlayerToParty(player1);
                     System.out.println("You have create a Wizard called " +name);
                     charTypeSelected = true;
                 }
             }
-            System.out.println(game.getParty());
+            System.out.println("Your party is ready! " + game.getParty());
         }
+//        enter room
+        game.enterRoom(game.findNextLocation());
+        System.out.println("The party enters a " + game.getCurrentLocation().getName()+" an " + game.getCurrentLocation().getDescription() );
+//        search for enemies
+
     }
 
 

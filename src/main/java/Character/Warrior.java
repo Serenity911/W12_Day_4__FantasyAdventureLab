@@ -1,10 +1,11 @@
 package Character;
 
+import Arm.Arm;
 import Arm.Weapon;
 
 import java.util.ArrayList;
 
-public class Warrior extends Player {
+public class Warrior extends Player implements IFight {
     private ArrayList<Weapon> weapons;
 
     public Warrior(String name) {
@@ -20,4 +21,22 @@ public class Warrior extends Player {
         this.weapons.add(weapon);
     }
 
+    public Arm getMostPowerfulArm(){
+        Weapon mostPowerfulWeapon = new Weapon("test", 0);
+        for (Weapon weapon : this.weapons) {
+            if (weapon.getDamage() > mostPowerfulWeapon.getDamage()) {
+                mostPowerfulWeapon = weapon;
+            }
+        }
+        return mostPowerfulWeapon;
+    }
+
+    public double rollDiceD(int dNumber) {
+        double r = (Math.random() * (dNumber - 1)) + 1;
+        return r;
+    }
+
+    public double attack() {
+       return (this.attackMultiplier/100) * this.getMostPowerfulArm().getDamage()* rollDiceD(20) ;
+    }
 }

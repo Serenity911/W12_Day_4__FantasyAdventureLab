@@ -12,12 +12,14 @@ public class DwarfTest {
     private Dwarf dwarf;
     private Weapon axe;
     private Gem gem;
+    private Weapon cutter;
 
     @Before
     public void before(){
         dwarf = new Dwarf("Jeff");
         axe = new Axe("Long Arm.Axe", 10);
         gem = new Gem("Ruby", 10);
+        cutter = new Axe ("Mini cutter", 1);
 
     }
     @Test
@@ -78,6 +80,18 @@ public class DwarfTest {
         assertEquals(0, dwarf.getTreasureList().size());
     }
 
+    @Test
+    public void get_most_powerful_weapon(){
+        dwarf.addWeapon(axe);
+        dwarf.addWeapon(cutter);
+        assertEquals(axe, dwarf.getMostPowerfulArm());
+    }
 
+    @Test
+    public void can_attack(){
+        dwarf.addWeapon(axe);
+        double result = dwarf.attack();
+        assertEquals(true, (result > 0.6 && result <=12));
+    }
 
 }

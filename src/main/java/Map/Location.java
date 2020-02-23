@@ -3,6 +3,8 @@ package Map;
 import Treasure.IHaveTreasure;
 import Treasure.Treasure;
 import Character.Player;
+import Character.Dwarf;
+import Character.IFight;
 
 import java.util.ArrayList;
 
@@ -12,17 +14,24 @@ public abstract class Location implements IHaveTreasure {
     private String description;
     private int sizeInTiles;
     private ArrayList<Treasure> treasureList;;
-    private ArrayList<Player> party;
-    private boolean isSolved;
+    protected ArrayList<Player> party;
+    protected boolean isSolved;
+    protected ArrayList<Player> enemies;
 
-    public Location(String type, String name, String description, int sizeInTiles,ArrayList<Treasure> treasures) {
+
+
+
+    public Location(String type, String name, String description, int sizeInTiles,ArrayList<Treasure> treasures, ArrayList<Player> enemies) {
         this.type = type;
         this.name = name;
         this.description = description;
         this.sizeInTiles = sizeInTiles;
         this.treasureList = treasures;
+        this.enemies = enemies;
+
         this.party = new ArrayList<Player>();
         this.isSolved = false;
+
 
     }
 
@@ -87,4 +96,20 @@ public abstract class Location implements IHaveTreasure {
     public boolean getIsSolved() {
         return isSolved;
     }
+
+    public ArrayList<Player> getEnemies() {
+        return enemies;
+    }
+
+    public Player getEnemyLowestHealth(){
+        Player weakierEnemy = new Dwarf("test");
+        for (Player enemy : this.enemies){
+           if(enemy.getHealth() <= weakierEnemy.getHealth()) {
+               weakierEnemy = enemy;
+           }
+        }
+        return weakierEnemy;
+    }
+
+
 }

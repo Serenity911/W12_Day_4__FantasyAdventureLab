@@ -88,5 +88,14 @@ public class GameTest {
         assertEquals(0, game.getRooms().get(0).getParty().size());
     }
 
+    @Test
+    public void check_if_enemy_returns_true(){
+        game.initialiseGame();
+        game.addPlayerToParty(dwarf);
+        game.enterRoom(game.findNextLocation());
+        assertEquals(true, game.areThereEnemy());
+
+    }
+
 }
 
