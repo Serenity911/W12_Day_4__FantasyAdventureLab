@@ -1,21 +1,22 @@
 package Map;
 
 import Treasure.Treasure;
-import Character.Player;
+import Character.FightingPlayer;
+import Character.IFight;
 import java.util.ArrayList;
 
 public class Room extends Location {
-    private ArrayList<Player> defeatedEnemies;
+    private ArrayList<FightingPlayer> defeatedEnemies;
 
 
 
-    public Room(String name, String description, int sizeInTiles, ArrayList<Treasure> treasures, ArrayList<Player> enemies) {
+    public Room(String name, String description, int sizeInTiles, ArrayList<Treasure> treasures, ArrayList<FightingPlayer> enemies) {
         super("room", name, description, sizeInTiles, treasures, enemies);
-        this.defeatedEnemies = new ArrayList<Player>();
+        this.defeatedEnemies = new ArrayList<FightingPlayer>();
     }
 
 
-    public void defeatEnemy(Player enemy) {
+    public void defeatEnemy(FightingPlayer enemy) {
         if(this.enemies.contains(enemy)) {
             this.defeatedEnemies.add(enemy);
             this.enemies.remove(enemy);
@@ -25,7 +26,7 @@ public class Room extends Location {
         }
     }
 
-    public ArrayList<Player> getDefeatedEnemies() {
+    public ArrayList<FightingPlayer> getDefeatedEnemies() {
         return defeatedEnemies;
     }
 

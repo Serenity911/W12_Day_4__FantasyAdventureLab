@@ -11,6 +11,7 @@ public abstract class Player implements IHaveHealth, IHaveTreasure {
     protected double defenceMultiplier;
     protected double health;
     protected ArrayList<Treasure> treasureList;
+    protected boolean isAlive;
 
     public Player(String name) {
         this.name = name;
@@ -18,6 +19,7 @@ public abstract class Player implements IHaveHealth, IHaveTreasure {
         this.defenceMultiplier = 8;
         this.health = 100;
         this.treasureList = new ArrayList<Treasure>();
+        this.isAlive = true;
     }
     public String getName() {
         return name;
@@ -38,11 +40,17 @@ public abstract class Player implements IHaveHealth, IHaveTreasure {
 
 
     public void reduceHealth(double amount) {
-        this.health -= amount;
+        if (this.health > 0) {
+            this.health -= amount;
+        }
+        if (this.health <= 0) {
+            this.isAlive = false;
+        }
     }
 
     public void increaseHealth(double amount) {
         this.health += amount;
+
     }
 
     public ArrayList<Treasure> getTreasureList() {
@@ -68,5 +76,9 @@ public abstract class Player implements IHaveHealth, IHaveTreasure {
         }
         this.treasureList.clear();
         return droppedTreasure;
+    }
+
+    public boolean getIsAlive(){
+        return this.isAlive;
     }
 }

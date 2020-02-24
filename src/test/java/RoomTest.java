@@ -1,5 +1,6 @@
 import Map.Room;
 import Character.Player;
+import Character.FightingPlayer;
 import Character.Dwarf;
 import Character.Cleric;
 import Character.Wizard;
@@ -20,9 +21,9 @@ public class RoomTest {
     public Treasure gem1;
     public Treasure gem2;
     public Treasure gem3;
-    public Player enemy;
-    public Player enemy1;
-    public ArrayList<Player> enemies;
+    public FightingPlayer enemy;
+    public FightingPlayer enemy1;
+    public ArrayList<FightingPlayer> enemies;
     public ArrayList<Player> party;
     public Wizard wizard;
     public Dwarf dwarf;
@@ -53,7 +54,7 @@ public class RoomTest {
 
         enemy = new Dwarf("Brutus the Angry Dwarf");
         enemy1 = new Dwarf("Caius, son of Brutus the Angry Dwarf");
-        enemies = new ArrayList<Player>();
+        enemies = new ArrayList<FightingPlayer>();
         enemies.add(enemy);
 
         room = new Room("Dungeon Entrance", "Empty disadorned room.", 10, treasureList, enemies);
@@ -153,7 +154,6 @@ public class RoomTest {
     public void get_enemy_with_lowest_health(){
         this.enemies.add(enemy1);
         enemy1.reduceHealth(90);
-
         assertEquals(10, enemy1.getHealth(), 0.01);
         assertEquals(enemy1, room.getEnemyLowestHealth());
 

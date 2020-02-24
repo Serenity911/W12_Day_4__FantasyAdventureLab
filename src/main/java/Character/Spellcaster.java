@@ -5,7 +5,7 @@ import Arm.Spell;
 
 import java.util.ArrayList;
 
-public class Spellcaster extends Player implements IFight{
+public class Spellcaster extends FightingPlayer {
     private ArrayList<Spell> spells;
 
     public Spellcaster(String name) {

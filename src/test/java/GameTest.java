@@ -1,7 +1,7 @@
 import Game.Game;
 import Game.Rules;
-import Character.Player;
 import Character.Dwarf;
+import Character.FightingPlayer;
 import Map.Room;
 import Treasure.Treasure;
 import org.junit.Before;
@@ -65,7 +65,7 @@ public class GameTest {
     public void party_cannot_enter_first_room_if_no_players(){
         game.initialiseGame();
         ArrayList<Treasure> treasure = null;
-        ArrayList<Player> enemy = null;
+        ArrayList<FightingPlayer> enemy = null;
         Room room1 = new Room ("room", "test", 1, treasure, enemy);
         game.getRooms().add(0, room1);
         assertEquals(null, game.findNextLocation());
@@ -94,8 +94,17 @@ public class GameTest {
         game.addPlayerToParty(dwarf);
         game.enterRoom(game.findNextLocation());
         assertEquals(true, game.areThereEnemy());
-
     }
+
+    @Test
+    public void fight_in_a_room_one_enemy(){
+        game.initialiseGame();
+        game.addPlayerToParty(dwarf);
+        game.enterRoom(game.findNextLocation());
+        game.fight();
+        assertEquals(true, game.getCurrentLocation().getIsSolved());
+    }
+
 
 }
 

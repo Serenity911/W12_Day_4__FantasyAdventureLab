@@ -3,6 +3,7 @@ package Map;
 import Treasure.IHaveTreasure;
 import Treasure.Treasure;
 import Character.Player;
+import Character.FightingPlayer;
 import Character.Dwarf;
 import Character.IFight;
 
@@ -16,12 +17,12 @@ public abstract class Location implements IHaveTreasure {
     private ArrayList<Treasure> treasureList;;
     protected ArrayList<Player> party;
     protected boolean isSolved;
-    protected ArrayList<Player> enemies;
+    protected ArrayList<FightingPlayer> enemies;
 
 
 
 
-    public Location(String type, String name, String description, int sizeInTiles,ArrayList<Treasure> treasures, ArrayList<Player> enemies) {
+    public Location(String type, String name, String description, int sizeInTiles,ArrayList<Treasure> treasures, ArrayList<FightingPlayer> enemies) {
         this.type = type;
         this.name = name;
         this.description = description;
@@ -97,19 +98,43 @@ public abstract class Location implements IHaveTreasure {
         return isSolved;
     }
 
-    public ArrayList<Player> getEnemies() {
+    public ArrayList<FightingPlayer> getEnemies() {
         return enemies;
     }
 
-    public Player getEnemyLowestHealth(){
-        Player weakierEnemy = new Dwarf("test");
-        for (Player enemy : this.enemies){
-           if(enemy.getHealth() <= weakierEnemy.getHealth()) {
-               weakierEnemy = enemy;
+    public FightingPlayer getEnemyLowestHealth(){
+        FightingPlayer weakestEnemy = new Dwarf("test");
+        for (FightingPlayer enemy : this.enemies){
+           if( enemy.getHealth() <= weakestEnemy.getHealth()) {
+               weakestEnemy = enemy;
            }
         }
-        return weakierEnemy;
+        return weakestEnemy;
     }
 
+    public FightingPlayer getPartyPlayerLowestHealth(){
+        FightingPlayer weakestPartyPlayer = new Dwarf("test");
+        for (FightingPlayer enemy : this.enemies){
+            if( enemy.getHealth() <= weakestPartyPlayer.getHealth()) {
+                weakestPartyPlayer = enemy;
+            }
+        }
+        return weakestPartyPlayer;
+    }
 
+//    todo
+//    why cannot be used for both, passing a fighting player? it should still be a player!
+//    public Player getLowestHealth(ArrayList<Player> players){
+//        Player weakestPlayer = new Dwarf("test");
+//        for (Player player : players){
+//            if(player.getHealth() <= weakestPlayer.getHealth()) {
+//                weakestPlayer = player;
+//            }
+//        }
+//        return weakestPlayer;
+//    }
+
+    public void setIsSolved(boolean solved) {
+        this.isSolved = solved;
+    }
 }

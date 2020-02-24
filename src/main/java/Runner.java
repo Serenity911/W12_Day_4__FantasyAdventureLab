@@ -1,12 +1,7 @@
 import Game.Game;
-import Map.Room;
-import Treasure.Treasure;
-import Treasure.Gem;
 import Game.Rules;
-import Character.Dwarf;
-import Character.Player;
 import Character.Wizard;
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class Runner {
@@ -30,6 +25,7 @@ public class Runner {
                 if (answer.equals("y")) {
                     Wizard player1 = new Wizard(""+name+"");
                      game.addPlayerToParty(player1);
+                     game.addPlayerToFightingPlayer(player1);
                     System.out.println("You have create a Wizard called " +name);
                     charTypeSelected = true;
                 }
@@ -38,9 +34,12 @@ public class Runner {
         }
 //        enter room
         game.enterRoom(game.findNextLocation());
-        System.out.println("The party enters a " + game.getCurrentLocation().getName()+" an " + game.getCurrentLocation().getDescription() );
+        System.out.println("The party enters " + game.getCurrentLocation().getName()+", an " + game.getCurrentLocation().getDescription() );
 //        search for enemies
-
+        System.out.println("The party carefully searches for enemies, and finds..." + game.getCurrentLocation().getEnemies().size() + "!");
+//        fight enemies
+        game.fight();
+        System.out.println("The fight was intense...The winner is:");
     }
 
 
